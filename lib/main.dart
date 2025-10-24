@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:mistral_ai_chat_application/config/dependencies.dart';
+import 'package:mistral_ai_chat_application/routing/router.dart';
 import 'package:mistral_ai_chat_application/ui/core/localization/app_localizations.dart';
 import 'package:mistral_ai_chat_application/ui/core/themes/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  usePathUrlStrategy();
+  // usePathUrlStrategy();
   runApp(MultiProvider(providers: providers, child: const MyApp()));
 }
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
     );
   }
