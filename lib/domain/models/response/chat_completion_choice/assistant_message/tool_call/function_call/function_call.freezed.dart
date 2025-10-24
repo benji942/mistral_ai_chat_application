@@ -11,11 +11,34 @@ part of 'function_call.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+FunctionCall _$FunctionCallFromJson(
+  Map<String, dynamic> json
+) {
+        switch (json['runtimeType']) {
+                  case 'argument':
+          return FunctionCallSingleArgument.fromJson(
+            json
+          );
+                case 'arguments':
+          return FunctionCallMultipleArguments.fromJson(
+            json
+          );
+        
+          default:
+            throw CheckedFromJsonException(
+  json,
+  'runtimeType',
+  'FunctionCall',
+  'Invalid union type "${json['runtimeType']}"!'
+);
+        }
+      
+}
 
 /// @nodoc
 mixin _$FunctionCall {
 
- String get name;
+ Object get arguments; String get name;
 /// Create a copy of FunctionCall
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +51,16 @@ $FunctionCallCopyWith<FunctionCall> get copyWith => _$FunctionCallCopyWithImpl<F
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FunctionCall&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FunctionCall&&const DeepCollectionEquality().equals(other.arguments, arguments)&&(identical(other.name, name) || other.name == name));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(arguments),name);
 
 @override
 String toString() {
-  return 'FunctionCall(name: $name)';
+  return 'FunctionCall(arguments: $arguments, name: $name)';
 }
 
 
@@ -89,11 +112,12 @@ extension FunctionCallPatterns on FunctionCall {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _FunctionCall value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( FunctionCallSingleArgument value)?  argument,TResult Function( FunctionCallMultipleArguments value)?  arguments,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _FunctionCall() when $default != null:
-return $default(_that);case _:
+case FunctionCallSingleArgument() when argument != null:
+return argument(_that);case FunctionCallMultipleArguments() when arguments != null:
+return arguments(_that);case _:
   return orElse();
 
 }
@@ -111,14 +135,12 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _FunctionCall value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( FunctionCallSingleArgument value)  argument,required TResult Function( FunctionCallMultipleArguments value)  arguments,}){
 final _that = this;
 switch (_that) {
-case _FunctionCall():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+case FunctionCallSingleArgument():
+return argument(_that);case FunctionCallMultipleArguments():
+return arguments(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -132,11 +154,12 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _FunctionCall value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( FunctionCallSingleArgument value)?  argument,TResult? Function( FunctionCallMultipleArguments value)?  arguments,}){
 final _that = this;
 switch (_that) {
-case _FunctionCall() when $default != null:
-return $default(_that);case _:
+case FunctionCallSingleArgument() when argument != null:
+return argument(_that);case FunctionCallMultipleArguments() when arguments != null:
+return arguments(_that);case _:
   return null;
 
 }
@@ -153,10 +176,11 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String arguments,  String name)?  argument,TResult Function( Map<String, dynamic> arguments,  String name)?  arguments,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _FunctionCall() when $default != null:
-return $default(_that.name);case _:
+case FunctionCallSingleArgument() when argument != null:
+return argument(_that.arguments,_that.name);case FunctionCallMultipleArguments() when arguments != null:
+return arguments(_that.arguments,_that.name);case _:
   return orElse();
 
 }
@@ -174,13 +198,11 @@ return $default(_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String arguments,  String name)  argument,required TResult Function( Map<String, dynamic> arguments,  String name)  arguments,}) {final _that = this;
 switch (_that) {
-case _FunctionCall():
-return $default(_that.name);case _:
-  throw StateError('Unexpected subclass');
-
-}
+case FunctionCallSingleArgument():
+return argument(_that.arguments,_that.name);case FunctionCallMultipleArguments():
+return arguments(_that.arguments,_that.name);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -194,10 +216,11 @@ return $default(_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String arguments,  String name)?  argument,TResult? Function( Map<String, dynamic> arguments,  String name)?  arguments,}) {final _that = this;
 switch (_that) {
-case _FunctionCall() when $default != null:
-return $default(_that.name);case _:
+case FunctionCallSingleArgument() when argument != null:
+return argument(_that.arguments,_that.name);case FunctionCallMultipleArguments() when arguments != null:
+return arguments(_that.arguments,_that.name);case _:
   return null;
 
 }
@@ -208,46 +231,51 @@ return $default(_that.name);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FunctionCall implements FunctionCall {
-  const _FunctionCall({required this.name});
-  factory _FunctionCall.fromJson(Map<String, dynamic> json) => _$FunctionCallFromJson(json);
+class FunctionCallSingleArgument implements FunctionCall {
+   FunctionCallSingleArgument({required this.arguments, required this.name, final  String? $type}): $type = $type ?? 'argument';
+  factory FunctionCallSingleArgument.fromJson(Map<String, dynamic> json) => _$FunctionCallSingleArgumentFromJson(json);
 
+@override final  String arguments;
 @override final  String name;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of FunctionCall
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$FunctionCallCopyWith<_FunctionCall> get copyWith => __$FunctionCallCopyWithImpl<_FunctionCall>(this, _$identity);
+$FunctionCallSingleArgumentCopyWith<FunctionCallSingleArgument> get copyWith => _$FunctionCallSingleArgumentCopyWithImpl<FunctionCallSingleArgument>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$FunctionCallToJson(this, );
+  return _$FunctionCallSingleArgumentToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FunctionCall&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FunctionCallSingleArgument&&(identical(other.arguments, arguments) || other.arguments == arguments)&&(identical(other.name, name) || other.name == name));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name);
+int get hashCode => Object.hash(runtimeType,arguments,name);
 
 @override
 String toString() {
-  return 'FunctionCall(name: $name)';
+  return 'FunctionCall.argument(arguments: $arguments, name: $name)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$FunctionCallCopyWith<$Res> implements $FunctionCallCopyWith<$Res> {
-  factory _$FunctionCallCopyWith(_FunctionCall value, $Res Function(_FunctionCall) _then) = __$FunctionCallCopyWithImpl;
+abstract mixin class $FunctionCallSingleArgumentCopyWith<$Res> implements $FunctionCallCopyWith<$Res> {
+  factory $FunctionCallSingleArgumentCopyWith(FunctionCallSingleArgument value, $Res Function(FunctionCallSingleArgument) _then) = _$FunctionCallSingleArgumentCopyWithImpl;
 @override @useResult
 $Res call({
- String name
+ String arguments, String name
 });
 
 
@@ -255,18 +283,100 @@ $Res call({
 
 }
 /// @nodoc
-class __$FunctionCallCopyWithImpl<$Res>
-    implements _$FunctionCallCopyWith<$Res> {
-  __$FunctionCallCopyWithImpl(this._self, this._then);
+class _$FunctionCallSingleArgumentCopyWithImpl<$Res>
+    implements $FunctionCallSingleArgumentCopyWith<$Res> {
+  _$FunctionCallSingleArgumentCopyWithImpl(this._self, this._then);
 
-  final _FunctionCall _self;
-  final $Res Function(_FunctionCall) _then;
+  final FunctionCallSingleArgument _self;
+  final $Res Function(FunctionCallSingleArgument) _then;
 
 /// Create a copy of FunctionCall
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,}) {
-  return _then(_FunctionCall(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+@override @pragma('vm:prefer-inline') $Res call({Object? arguments = null,Object? name = null,}) {
+  return _then(FunctionCallSingleArgument(
+arguments: null == arguments ? _self.arguments : arguments // ignore: cast_nullable_to_non_nullable
+as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class FunctionCallMultipleArguments implements FunctionCall {
+   FunctionCallMultipleArguments({required final  Map<String, dynamic> arguments, required this.name, final  String? $type}): _arguments = arguments,$type = $type ?? 'arguments';
+  factory FunctionCallMultipleArguments.fromJson(Map<String, dynamic> json) => _$FunctionCallMultipleArgumentsFromJson(json);
+
+ final  Map<String, dynamic> _arguments;
+@override Map<String, dynamic> get arguments {
+  if (_arguments is EqualUnmodifiableMapView) return _arguments;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_arguments);
+}
+
+@override final  String name;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of FunctionCall
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$FunctionCallMultipleArgumentsCopyWith<FunctionCallMultipleArguments> get copyWith => _$FunctionCallMultipleArgumentsCopyWithImpl<FunctionCallMultipleArguments>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$FunctionCallMultipleArgumentsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FunctionCallMultipleArguments&&const DeepCollectionEquality().equals(other._arguments, _arguments)&&(identical(other.name, name) || other.name == name));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_arguments),name);
+
+@override
+String toString() {
+  return 'FunctionCall.arguments(arguments: $arguments, name: $name)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $FunctionCallMultipleArgumentsCopyWith<$Res> implements $FunctionCallCopyWith<$Res> {
+  factory $FunctionCallMultipleArgumentsCopyWith(FunctionCallMultipleArguments value, $Res Function(FunctionCallMultipleArguments) _then) = _$FunctionCallMultipleArgumentsCopyWithImpl;
+@override @useResult
+$Res call({
+ Map<String, dynamic> arguments, String name
+});
+
+
+
+
+}
+/// @nodoc
+class _$FunctionCallMultipleArgumentsCopyWithImpl<$Res>
+    implements $FunctionCallMultipleArgumentsCopyWith<$Res> {
+  _$FunctionCallMultipleArgumentsCopyWithImpl(this._self, this._then);
+
+  final FunctionCallMultipleArguments _self;
+  final $Res Function(FunctionCallMultipleArguments) _then;
+
+/// Create a copy of FunctionCall
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? arguments = null,Object? name = null,}) {
+  return _then(FunctionCallMultipleArguments(
+arguments: null == arguments ? _self._arguments : arguments // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

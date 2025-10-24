@@ -11,7 +11,7 @@ _AssistantMessage _$AssistantMessageFromJson(Map<String, dynamic> json) =>
       content: json['content'] as String?,
       prefix: json['prefix'] as bool? ?? false,
       role: $enumDecodeNullable(_$RoleEnumMap, json['role']) ?? Role.assistant,
-      toolCalls: (json['toolCalls'] as List<dynamic>?)
+      toolCalls: (json['tool_calls'] as List<dynamic>?)
           ?.map((e) => ToolCall.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -21,7 +21,7 @@ Map<String, dynamic> _$AssistantMessageToJson(_AssistantMessage instance) =>
       'content': instance.content,
       'prefix': instance.prefix,
       'role': _$RoleEnumMap[instance.role]!,
-      'toolCalls': instance.toolCalls,
+      'tool_calls': instance.toolCalls,
     };
 
 const _$RoleEnumMap = {Role.assistant: 'assistant'};

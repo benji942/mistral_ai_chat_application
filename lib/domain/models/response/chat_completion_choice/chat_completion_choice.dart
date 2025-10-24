@@ -7,6 +7,7 @@ part 'chat_completion_choice.g.dart';
 @freezed
 abstract class ChatCompletionChoice with _$ChatCompletionChoice{
   const factory ChatCompletionChoice({
+    @JsonKey(name: "finish_reason")
     required FinishReason finishReason,
     required int index, 
     required AssistantMessage message

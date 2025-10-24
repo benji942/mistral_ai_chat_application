@@ -10,6 +10,7 @@ abstract class AssistantMessage with _$AssistantMessage {
     String? content,
     @Default(false) bool prefix,
     @Default(Role.assistant) Role role,
+    @JsonKey(name: "tool_calls")
     List<ToolCall>? toolCalls,
   }) = _AssistantMessage;
 

@@ -15,7 +15,11 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RequestBody {
 
- double get frequencyPenalty; int? get maxTokens; Model get model; int? get n; bool get parallelToolCalls; Prediction? get prediction; double get presencePenalty; int? get randomSeed; bool get safePrompt; List<String> get stop; bool get stream; double? get temperature; double get topP;
+// @JsonKey(name: "frequency_penalty")
+// @Default(0.0) double frequencyPenalty,
+// @JsonKey(name: "max_tokens")
+// int? maxTokens,
+ List<UserMessage> get messages; Model get model;
 /// Create a copy of RequestBody
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +32,16 @@ $RequestBodyCopyWith<RequestBody> get copyWith => _$RequestBodyCopyWithImpl<Requ
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RequestBody&&(identical(other.frequencyPenalty, frequencyPenalty) || other.frequencyPenalty == frequencyPenalty)&&(identical(other.maxTokens, maxTokens) || other.maxTokens == maxTokens)&&(identical(other.model, model) || other.model == model)&&(identical(other.n, n) || other.n == n)&&(identical(other.parallelToolCalls, parallelToolCalls) || other.parallelToolCalls == parallelToolCalls)&&(identical(other.prediction, prediction) || other.prediction == prediction)&&(identical(other.presencePenalty, presencePenalty) || other.presencePenalty == presencePenalty)&&(identical(other.randomSeed, randomSeed) || other.randomSeed == randomSeed)&&(identical(other.safePrompt, safePrompt) || other.safePrompt == safePrompt)&&const DeepCollectionEquality().equals(other.stop, stop)&&(identical(other.stream, stream) || other.stream == stream)&&(identical(other.temperature, temperature) || other.temperature == temperature)&&(identical(other.topP, topP) || other.topP == topP));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RequestBody&&const DeepCollectionEquality().equals(other.messages, messages)&&(identical(other.model, model) || other.model == model));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,frequencyPenalty,maxTokens,model,n,parallelToolCalls,prediction,presencePenalty,randomSeed,safePrompt,const DeepCollectionEquality().hash(stop),stream,temperature,topP);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(messages),model);
 
 @override
 String toString() {
-  return 'RequestBody(frequencyPenalty: $frequencyPenalty, maxTokens: $maxTokens, model: $model, n: $n, parallelToolCalls: $parallelToolCalls, prediction: $prediction, presencePenalty: $presencePenalty, randomSeed: $randomSeed, safePrompt: $safePrompt, stop: $stop, stream: $stream, temperature: $temperature, topP: $topP)';
+  return 'RequestBody(messages: $messages, model: $model)';
 }
 
 
@@ -48,11 +52,11 @@ abstract mixin class $RequestBodyCopyWith<$Res>  {
   factory $RequestBodyCopyWith(RequestBody value, $Res Function(RequestBody) _then) = _$RequestBodyCopyWithImpl;
 @useResult
 $Res call({
- double frequencyPenalty, int? maxTokens, Model model, int? n, bool parallelToolCalls, Prediction? prediction, double presencePenalty, int? randomSeed, bool safePrompt, List<String> stop, bool stream, double? temperature, double topP
+ List<UserMessage> messages, Model model
 });
 
 
-$PredictionCopyWith<$Res>? get prediction;
+
 
 }
 /// @nodoc
@@ -65,37 +69,14 @@ class _$RequestBodyCopyWithImpl<$Res>
 
 /// Create a copy of RequestBody
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? frequencyPenalty = null,Object? maxTokens = freezed,Object? model = null,Object? n = freezed,Object? parallelToolCalls = null,Object? prediction = freezed,Object? presencePenalty = null,Object? randomSeed = freezed,Object? safePrompt = null,Object? stop = null,Object? stream = null,Object? temperature = freezed,Object? topP = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? messages = null,Object? model = null,}) {
   return _then(_self.copyWith(
-frequencyPenalty: null == frequencyPenalty ? _self.frequencyPenalty : frequencyPenalty // ignore: cast_nullable_to_non_nullable
-as double,maxTokens: freezed == maxTokens ? _self.maxTokens : maxTokens // ignore: cast_nullable_to_non_nullable
-as int?,model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
-as Model,n: freezed == n ? _self.n : n // ignore: cast_nullable_to_non_nullable
-as int?,parallelToolCalls: null == parallelToolCalls ? _self.parallelToolCalls : parallelToolCalls // ignore: cast_nullable_to_non_nullable
-as bool,prediction: freezed == prediction ? _self.prediction : prediction // ignore: cast_nullable_to_non_nullable
-as Prediction?,presencePenalty: null == presencePenalty ? _self.presencePenalty : presencePenalty // ignore: cast_nullable_to_non_nullable
-as double,randomSeed: freezed == randomSeed ? _self.randomSeed : randomSeed // ignore: cast_nullable_to_non_nullable
-as int?,safePrompt: null == safePrompt ? _self.safePrompt : safePrompt // ignore: cast_nullable_to_non_nullable
-as bool,stop: null == stop ? _self.stop : stop // ignore: cast_nullable_to_non_nullable
-as List<String>,stream: null == stream ? _self.stream : stream // ignore: cast_nullable_to_non_nullable
-as bool,temperature: freezed == temperature ? _self.temperature : temperature // ignore: cast_nullable_to_non_nullable
-as double?,topP: null == topP ? _self.topP : topP // ignore: cast_nullable_to_non_nullable
-as double,
+messages: null == messages ? _self.messages : messages // ignore: cast_nullable_to_non_nullable
+as List<UserMessage>,model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
+as Model,
   ));
 }
-/// Create a copy of RequestBody
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$PredictionCopyWith<$Res>? get prediction {
-    if (_self.prediction == null) {
-    return null;
-  }
 
-  return $PredictionCopyWith<$Res>(_self.prediction!, (value) {
-    return _then(_self.copyWith(prediction: value));
-  });
-}
 }
 
 
@@ -177,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double frequencyPenalty,  int? maxTokens,  Model model,  int? n,  bool parallelToolCalls,  Prediction? prediction,  double presencePenalty,  int? randomSeed,  bool safePrompt,  List<String> stop,  bool stream,  double? temperature,  double topP)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<UserMessage> messages,  Model model)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RequestBody() when $default != null:
-return $default(_that.frequencyPenalty,_that.maxTokens,_that.model,_that.n,_that.parallelToolCalls,_that.prediction,_that.presencePenalty,_that.randomSeed,_that.safePrompt,_that.stop,_that.stream,_that.temperature,_that.topP);case _:
+return $default(_that.messages,_that.model);case _:
   return orElse();
 
 }
@@ -198,10 +179,10 @@ return $default(_that.frequencyPenalty,_that.maxTokens,_that.model,_that.n,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double frequencyPenalty,  int? maxTokens,  Model model,  int? n,  bool parallelToolCalls,  Prediction? prediction,  double presencePenalty,  int? randomSeed,  bool safePrompt,  List<String> stop,  bool stream,  double? temperature,  double topP)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<UserMessage> messages,  Model model)  $default,) {final _that = this;
 switch (_that) {
 case _RequestBody():
-return $default(_that.frequencyPenalty,_that.maxTokens,_that.model,_that.n,_that.parallelToolCalls,_that.prediction,_that.presencePenalty,_that.randomSeed,_that.safePrompt,_that.stop,_that.stream,_that.temperature,_that.topP);case _:
+return $default(_that.messages,_that.model);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -218,10 +199,10 @@ return $default(_that.frequencyPenalty,_that.maxTokens,_that.model,_that.n,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double frequencyPenalty,  int? maxTokens,  Model model,  int? n,  bool parallelToolCalls,  Prediction? prediction,  double presencePenalty,  int? randomSeed,  bool safePrompt,  List<String> stop,  bool stream,  double? temperature,  double topP)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<UserMessage> messages,  Model model)?  $default,) {final _that = this;
 switch (_that) {
 case _RequestBody() when $default != null:
-return $default(_that.frequencyPenalty,_that.maxTokens,_that.model,_that.n,_that.parallelToolCalls,_that.prediction,_that.presencePenalty,_that.randomSeed,_that.safePrompt,_that.stop,_that.stream,_that.temperature,_that.topP);case _:
+return $default(_that.messages,_that.model);case _:
   return null;
 
 }
@@ -233,28 +214,25 @@ return $default(_that.frequencyPenalty,_that.maxTokens,_that.model,_that.n,_that
 @JsonSerializable()
 
 class _RequestBody implements RequestBody {
-  const _RequestBody({this.frequencyPenalty = 0.0, this.maxTokens, required this.model, this.n, this.parallelToolCalls = true, this.prediction, this.presencePenalty = 0.0, this.randomSeed, this.safePrompt = false, required final  List<String> stop, this.stream = false, this.temperature, this.topP = 1.0}): _stop = stop;
+  const _RequestBody({required final  List<UserMessage> messages, required this.model}): _messages = messages;
   factory _RequestBody.fromJson(Map<String, dynamic> json) => _$RequestBodyFromJson(json);
 
-@override@JsonKey() final  double frequencyPenalty;
-@override final  int? maxTokens;
-@override final  Model model;
-@override final  int? n;
-@override@JsonKey() final  bool parallelToolCalls;
-@override final  Prediction? prediction;
-@override@JsonKey() final  double presencePenalty;
-@override final  int? randomSeed;
-@override@JsonKey() final  bool safePrompt;
- final  List<String> _stop;
-@override List<String> get stop {
-  if (_stop is EqualUnmodifiableListView) return _stop;
+// @JsonKey(name: "frequency_penalty")
+// @Default(0.0) double frequencyPenalty,
+// @JsonKey(name: "max_tokens")
+// int? maxTokens,
+ final  List<UserMessage> _messages;
+// @JsonKey(name: "frequency_penalty")
+// @Default(0.0) double frequencyPenalty,
+// @JsonKey(name: "max_tokens")
+// int? maxTokens,
+@override List<UserMessage> get messages {
+  if (_messages is EqualUnmodifiableListView) return _messages;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_stop);
+  return EqualUnmodifiableListView(_messages);
 }
 
-@override@JsonKey() final  bool stream;
-@override final  double? temperature;
-@override@JsonKey() final  double topP;
+@override final  Model model;
 
 /// Create a copy of RequestBody
 /// with the given fields replaced by the non-null parameter values.
@@ -269,16 +247,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RequestBody&&(identical(other.frequencyPenalty, frequencyPenalty) || other.frequencyPenalty == frequencyPenalty)&&(identical(other.maxTokens, maxTokens) || other.maxTokens == maxTokens)&&(identical(other.model, model) || other.model == model)&&(identical(other.n, n) || other.n == n)&&(identical(other.parallelToolCalls, parallelToolCalls) || other.parallelToolCalls == parallelToolCalls)&&(identical(other.prediction, prediction) || other.prediction == prediction)&&(identical(other.presencePenalty, presencePenalty) || other.presencePenalty == presencePenalty)&&(identical(other.randomSeed, randomSeed) || other.randomSeed == randomSeed)&&(identical(other.safePrompt, safePrompt) || other.safePrompt == safePrompt)&&const DeepCollectionEquality().equals(other._stop, _stop)&&(identical(other.stream, stream) || other.stream == stream)&&(identical(other.temperature, temperature) || other.temperature == temperature)&&(identical(other.topP, topP) || other.topP == topP));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RequestBody&&const DeepCollectionEquality().equals(other._messages, _messages)&&(identical(other.model, model) || other.model == model));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,frequencyPenalty,maxTokens,model,n,parallelToolCalls,prediction,presencePenalty,randomSeed,safePrompt,const DeepCollectionEquality().hash(_stop),stream,temperature,topP);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_messages),model);
 
 @override
 String toString() {
-  return 'RequestBody(frequencyPenalty: $frequencyPenalty, maxTokens: $maxTokens, model: $model, n: $n, parallelToolCalls: $parallelToolCalls, prediction: $prediction, presencePenalty: $presencePenalty, randomSeed: $randomSeed, safePrompt: $safePrompt, stop: $stop, stream: $stream, temperature: $temperature, topP: $topP)';
+  return 'RequestBody(messages: $messages, model: $model)';
 }
 
 
@@ -289,11 +267,11 @@ abstract mixin class _$RequestBodyCopyWith<$Res> implements $RequestBodyCopyWith
   factory _$RequestBodyCopyWith(_RequestBody value, $Res Function(_RequestBody) _then) = __$RequestBodyCopyWithImpl;
 @override @useResult
 $Res call({
- double frequencyPenalty, int? maxTokens, Model model, int? n, bool parallelToolCalls, Prediction? prediction, double presencePenalty, int? randomSeed, bool safePrompt, List<String> stop, bool stream, double? temperature, double topP
+ List<UserMessage> messages, Model model
 });
 
 
-@override $PredictionCopyWith<$Res>? get prediction;
+
 
 }
 /// @nodoc
@@ -306,38 +284,15 @@ class __$RequestBodyCopyWithImpl<$Res>
 
 /// Create a copy of RequestBody
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? frequencyPenalty = null,Object? maxTokens = freezed,Object? model = null,Object? n = freezed,Object? parallelToolCalls = null,Object? prediction = freezed,Object? presencePenalty = null,Object? randomSeed = freezed,Object? safePrompt = null,Object? stop = null,Object? stream = null,Object? temperature = freezed,Object? topP = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? messages = null,Object? model = null,}) {
   return _then(_RequestBody(
-frequencyPenalty: null == frequencyPenalty ? _self.frequencyPenalty : frequencyPenalty // ignore: cast_nullable_to_non_nullable
-as double,maxTokens: freezed == maxTokens ? _self.maxTokens : maxTokens // ignore: cast_nullable_to_non_nullable
-as int?,model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
-as Model,n: freezed == n ? _self.n : n // ignore: cast_nullable_to_non_nullable
-as int?,parallelToolCalls: null == parallelToolCalls ? _self.parallelToolCalls : parallelToolCalls // ignore: cast_nullable_to_non_nullable
-as bool,prediction: freezed == prediction ? _self.prediction : prediction // ignore: cast_nullable_to_non_nullable
-as Prediction?,presencePenalty: null == presencePenalty ? _self.presencePenalty : presencePenalty // ignore: cast_nullable_to_non_nullable
-as double,randomSeed: freezed == randomSeed ? _self.randomSeed : randomSeed // ignore: cast_nullable_to_non_nullable
-as int?,safePrompt: null == safePrompt ? _self.safePrompt : safePrompt // ignore: cast_nullable_to_non_nullable
-as bool,stop: null == stop ? _self._stop : stop // ignore: cast_nullable_to_non_nullable
-as List<String>,stream: null == stream ? _self.stream : stream // ignore: cast_nullable_to_non_nullable
-as bool,temperature: freezed == temperature ? _self.temperature : temperature // ignore: cast_nullable_to_non_nullable
-as double?,topP: null == topP ? _self.topP : topP // ignore: cast_nullable_to_non_nullable
-as double,
+messages: null == messages ? _self._messages : messages // ignore: cast_nullable_to_non_nullable
+as List<UserMessage>,model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
+as Model,
   ));
 }
 
-/// Create a copy of RequestBody
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$PredictionCopyWith<$Res>? get prediction {
-    if (_self.prediction == null) {
-    return null;
-  }
 
-  return $PredictionCopyWith<$Res>(_self.prediction!, (value) {
-    return _then(_self.copyWith(prediction: value));
-  });
-}
 }
 
 // dart format on

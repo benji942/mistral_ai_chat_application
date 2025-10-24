@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UsageInfo {
 
- int get completionTokens; int? get promptAudioSeconds; int get promptTokens; int get totalTokens;
+@JsonKey(name: "completion_tokens") int get completionTokens;@JsonKey(name: "prompt_audio_seconds") int? get promptAudioSeconds;@JsonKey(name: "prompt_tokens") int get promptTokens;@JsonKey(name: "total_tokens") int get totalTokens;
 /// Create a copy of UsageInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UsageInfoCopyWith<$Res>  {
   factory $UsageInfoCopyWith(UsageInfo value, $Res Function(UsageInfo) _then) = _$UsageInfoCopyWithImpl;
 @useResult
 $Res call({
- int completionTokens, int? promptAudioSeconds, int promptTokens, int totalTokens
+@JsonKey(name: "completion_tokens") int completionTokens,@JsonKey(name: "prompt_audio_seconds") int? promptAudioSeconds,@JsonKey(name: "prompt_tokens") int promptTokens,@JsonKey(name: "total_tokens") int totalTokens
 });
 
 
@@ -156,7 +156,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int completionTokens,  int? promptAudioSeconds,  int promptTokens,  int totalTokens)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "completion_tokens")  int completionTokens, @JsonKey(name: "prompt_audio_seconds")  int? promptAudioSeconds, @JsonKey(name: "prompt_tokens")  int promptTokens, @JsonKey(name: "total_tokens")  int totalTokens)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UsageInfo() when $default != null:
 return $default(_that.completionTokens,_that.promptAudioSeconds,_that.promptTokens,_that.totalTokens);case _:
@@ -177,7 +177,7 @@ return $default(_that.completionTokens,_that.promptAudioSeconds,_that.promptToke
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int completionTokens,  int? promptAudioSeconds,  int promptTokens,  int totalTokens)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "completion_tokens")  int completionTokens, @JsonKey(name: "prompt_audio_seconds")  int? promptAudioSeconds, @JsonKey(name: "prompt_tokens")  int promptTokens, @JsonKey(name: "total_tokens")  int totalTokens)  $default,) {final _that = this;
 switch (_that) {
 case _UsageInfo():
 return $default(_that.completionTokens,_that.promptAudioSeconds,_that.promptTokens,_that.totalTokens);case _:
@@ -197,7 +197,7 @@ return $default(_that.completionTokens,_that.promptAudioSeconds,_that.promptToke
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int completionTokens,  int? promptAudioSeconds,  int promptTokens,  int totalTokens)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "completion_tokens")  int completionTokens, @JsonKey(name: "prompt_audio_seconds")  int? promptAudioSeconds, @JsonKey(name: "prompt_tokens")  int promptTokens, @JsonKey(name: "total_tokens")  int totalTokens)?  $default,) {final _that = this;
 switch (_that) {
 case _UsageInfo() when $default != null:
 return $default(_that.completionTokens,_that.promptAudioSeconds,_that.promptTokens,_that.totalTokens);case _:
@@ -212,13 +212,13 @@ return $default(_that.completionTokens,_that.promptAudioSeconds,_that.promptToke
 @JsonSerializable()
 
 class _UsageInfo implements UsageInfo {
-  const _UsageInfo({this.completionTokens = 0, this.promptAudioSeconds, this.promptTokens = 0, this.totalTokens = 0});
+  const _UsageInfo({@JsonKey(name: "completion_tokens") this.completionTokens = 0, @JsonKey(name: "prompt_audio_seconds") this.promptAudioSeconds, @JsonKey(name: "prompt_tokens") this.promptTokens = 0, @JsonKey(name: "total_tokens") this.totalTokens = 0});
   factory _UsageInfo.fromJson(Map<String, dynamic> json) => _$UsageInfoFromJson(json);
 
-@override@JsonKey() final  int completionTokens;
-@override final  int? promptAudioSeconds;
-@override@JsonKey() final  int promptTokens;
-@override@JsonKey() final  int totalTokens;
+@override@JsonKey(name: "completion_tokens") final  int completionTokens;
+@override@JsonKey(name: "prompt_audio_seconds") final  int? promptAudioSeconds;
+@override@JsonKey(name: "prompt_tokens") final  int promptTokens;
+@override@JsonKey(name: "total_tokens") final  int totalTokens;
 
 /// Create a copy of UsageInfo
 /// with the given fields replaced by the non-null parameter values.
@@ -253,7 +253,7 @@ abstract mixin class _$UsageInfoCopyWith<$Res> implements $UsageInfoCopyWith<$Re
   factory _$UsageInfoCopyWith(_UsageInfo value, $Res Function(_UsageInfo) _then) = __$UsageInfoCopyWithImpl;
 @override @useResult
 $Res call({
- int completionTokens, int? promptAudioSeconds, int promptTokens, int totalTokens
+@JsonKey(name: "completion_tokens") int completionTokens,@JsonKey(name: "prompt_audio_seconds") int? promptAudioSeconds,@JsonKey(name: "prompt_tokens") int promptTokens,@JsonKey(name: "total_tokens") int totalTokens
 });
 
 

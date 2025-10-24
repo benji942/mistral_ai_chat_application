@@ -9,7 +9,7 @@ part of 'chat_completion_choice.dart';
 _ChatCompletionChoice _$ChatCompletionChoiceFromJson(
   Map<String, dynamic> json,
 ) => _ChatCompletionChoice(
-  finishReason: $enumDecode(_$FinishReasonEnumMap, json['finishReason']),
+  finishReason: $enumDecode(_$FinishReasonEnumMap, json['finish_reason']),
   index: (json['index'] as num).toInt(),
   message: AssistantMessage.fromJson(json['message'] as Map<String, dynamic>),
 );
@@ -17,7 +17,7 @@ _ChatCompletionChoice _$ChatCompletionChoiceFromJson(
 Map<String, dynamic> _$ChatCompletionChoiceToJson(
   _ChatCompletionChoice instance,
 ) => <String, dynamic>{
-  'finishReason': _$FinishReasonEnumMap[instance.finishReason]!,
+  'finish_reason': _$FinishReasonEnumMap[instance.finishReason]!,
   'index': instance.index,
   'message': instance.message,
 };

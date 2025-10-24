@@ -7,38 +7,16 @@ part of 'request_body.dart';
 // **************************************************************************
 
 _RequestBody _$RequestBodyFromJson(Map<String, dynamic> json) => _RequestBody(
-  frequencyPenalty: (json['frequencyPenalty'] as num?)?.toDouble() ?? 0.0,
-  maxTokens: (json['maxTokens'] as num?)?.toInt(),
+  messages: (json['messages'] as List<dynamic>)
+      .map((e) => UserMessage.fromJson(e as Map<String, dynamic>))
+      .toList(),
   model: $enumDecode(_$ModelEnumMap, json['model']),
-  n: (json['n'] as num?)?.toInt(),
-  parallelToolCalls: json['parallelToolCalls'] as bool? ?? true,
-  prediction: json['prediction'] == null
-      ? null
-      : Prediction.fromJson(json['prediction'] as Map<String, dynamic>),
-  presencePenalty: (json['presencePenalty'] as num?)?.toDouble() ?? 0.0,
-  randomSeed: (json['randomSeed'] as num?)?.toInt(),
-  safePrompt: json['safePrompt'] as bool? ?? false,
-  stop: (json['stop'] as List<dynamic>).map((e) => e as String).toList(),
-  stream: json['stream'] as bool? ?? false,
-  temperature: (json['temperature'] as num?)?.toDouble(),
-  topP: (json['topP'] as num?)?.toDouble() ?? 1.0,
 );
 
 Map<String, dynamic> _$RequestBodyToJson(_RequestBody instance) =>
     <String, dynamic>{
-      'frequencyPenalty': instance.frequencyPenalty,
-      'maxTokens': instance.maxTokens,
+      'messages': instance.messages,
       'model': _$ModelEnumMap[instance.model]!,
-      'n': instance.n,
-      'parallelToolCalls': instance.parallelToolCalls,
-      'prediction': instance.prediction,
-      'presencePenalty': instance.presencePenalty,
-      'randomSeed': instance.randomSeed,
-      'safePrompt': instance.safePrompt,
-      'stop': instance.stop,
-      'stream': instance.stream,
-      'temperature': instance.temperature,
-      'topP': instance.topP,
     };
 
 const _$ModelEnumMap = {

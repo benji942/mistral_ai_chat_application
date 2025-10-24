@@ -7,16 +7,16 @@ part of 'tool_call.dart';
 // **************************************************************************
 
 _ToolCall _$ToolCallFromJson(Map<String, dynamic> json) => _ToolCall(
-  toolCalls: (json['toolCalls'] as List<dynamic>?)
-      ?.map((e) => ToolCall.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  functionCall: const FunctionCallConverter().fromJson(
+    json['function_call'] as Map<String, dynamic>,
+  ),
   id: json['id'] as String? ?? "null",
   index: (json['index'] as num?)?.toInt() ?? 0,
   type: $enumDecodeNullable(_$TypeEnumMap, json['type']) ?? Type.function,
 );
 
 Map<String, dynamic> _$ToolCallToJson(_ToolCall instance) => <String, dynamic>{
-  'toolCalls': instance.toolCalls,
+  'function_call': const FunctionCallConverter().toJson(instance.functionCall),
   'id': instance.id,
   'index': instance.index,
   'type': _$TypeEnumMap[instance.type]!,

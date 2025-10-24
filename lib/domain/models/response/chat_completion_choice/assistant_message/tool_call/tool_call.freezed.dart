@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ToolCall {
 
- List<ToolCall>? get toolCalls; String get id; int get index; Type get type;
+@JsonKey(name: "function_call")@FunctionCallConverter() FunctionCall get functionCall; String get id; int get index; Type get type;
 /// Create a copy of ToolCall
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ToolCallCopyWith<ToolCall> get copyWith => _$ToolCallCopyWithImpl<ToolCall>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ToolCall&&const DeepCollectionEquality().equals(other.toolCalls, toolCalls)&&(identical(other.id, id) || other.id == id)&&(identical(other.index, index) || other.index == index)&&(identical(other.type, type) || other.type == type));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ToolCall&&(identical(other.functionCall, functionCall) || other.functionCall == functionCall)&&(identical(other.id, id) || other.id == id)&&(identical(other.index, index) || other.index == index)&&(identical(other.type, type) || other.type == type));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(toolCalls),id,index,type);
+int get hashCode => Object.hash(runtimeType,functionCall,id,index,type);
 
 @override
 String toString() {
-  return 'ToolCall(toolCalls: $toolCalls, id: $id, index: $index, type: $type)';
+  return 'ToolCall(functionCall: $functionCall, id: $id, index: $index, type: $type)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $ToolCallCopyWith<$Res>  {
   factory $ToolCallCopyWith(ToolCall value, $Res Function(ToolCall) _then) = _$ToolCallCopyWithImpl;
 @useResult
 $Res call({
- List<ToolCall>? toolCalls, String id, int index, Type type
+@JsonKey(name: "function_call")@FunctionCallConverter() FunctionCall functionCall, String id, int index, Type type
 });
 
 
-
+$FunctionCallCopyWith<$Res> get functionCall;
 
 }
 /// @nodoc
@@ -65,16 +65,25 @@ class _$ToolCallCopyWithImpl<$Res>
 
 /// Create a copy of ToolCall
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? toolCalls = freezed,Object? id = null,Object? index = null,Object? type = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? functionCall = null,Object? id = null,Object? index = null,Object? type = null,}) {
   return _then(_self.copyWith(
-toolCalls: freezed == toolCalls ? _self.toolCalls : toolCalls // ignore: cast_nullable_to_non_nullable
-as List<ToolCall>?,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+functionCall: null == functionCall ? _self.functionCall : functionCall // ignore: cast_nullable_to_non_nullable
+as FunctionCall,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,index: null == index ? _self.index : index // ignore: cast_nullable_to_non_nullable
 as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as Type,
   ));
 }
-
+/// Create a copy of ToolCall
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FunctionCallCopyWith<$Res> get functionCall {
+  
+  return $FunctionCallCopyWith<$Res>(_self.functionCall, (value) {
+    return _then(_self.copyWith(functionCall: value));
+  });
+}
 }
 
 
@@ -156,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<ToolCall>? toolCalls,  String id,  int index,  Type type)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "function_call")@FunctionCallConverter()  FunctionCall functionCall,  String id,  int index,  Type type)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ToolCall() when $default != null:
-return $default(_that.toolCalls,_that.id,_that.index,_that.type);case _:
+return $default(_that.functionCall,_that.id,_that.index,_that.type);case _:
   return orElse();
 
 }
@@ -177,10 +186,10 @@ return $default(_that.toolCalls,_that.id,_that.index,_that.type);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<ToolCall>? toolCalls,  String id,  int index,  Type type)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "function_call")@FunctionCallConverter()  FunctionCall functionCall,  String id,  int index,  Type type)  $default,) {final _that = this;
 switch (_that) {
 case _ToolCall():
-return $default(_that.toolCalls,_that.id,_that.index,_that.type);case _:
+return $default(_that.functionCall,_that.id,_that.index,_that.type);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +206,10 @@ return $default(_that.toolCalls,_that.id,_that.index,_that.type);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<ToolCall>? toolCalls,  String id,  int index,  Type type)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "function_call")@FunctionCallConverter()  FunctionCall functionCall,  String id,  int index,  Type type)?  $default,) {final _that = this;
 switch (_that) {
 case _ToolCall() when $default != null:
-return $default(_that.toolCalls,_that.id,_that.index,_that.type);case _:
+return $default(_that.functionCall,_that.id,_that.index,_that.type);case _:
   return null;
 
 }
@@ -212,18 +221,10 @@ return $default(_that.toolCalls,_that.id,_that.index,_that.type);case _:
 @JsonSerializable()
 
 class _ToolCall implements ToolCall {
-  const _ToolCall({final  List<ToolCall>? toolCalls, this.id = "null", this.index = 0, this.type = Type.function}): _toolCalls = toolCalls;
+  const _ToolCall({@JsonKey(name: "function_call")@FunctionCallConverter() required this.functionCall, this.id = "null", this.index = 0, this.type = Type.function});
   factory _ToolCall.fromJson(Map<String, dynamic> json) => _$ToolCallFromJson(json);
 
- final  List<ToolCall>? _toolCalls;
-@override List<ToolCall>? get toolCalls {
-  final value = _toolCalls;
-  if (value == null) return null;
-  if (_toolCalls is EqualUnmodifiableListView) return _toolCalls;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
+@override@JsonKey(name: "function_call")@FunctionCallConverter() final  FunctionCall functionCall;
 @override@JsonKey() final  String id;
 @override@JsonKey() final  int index;
 @override@JsonKey() final  Type type;
@@ -241,16 +242,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ToolCall&&const DeepCollectionEquality().equals(other._toolCalls, _toolCalls)&&(identical(other.id, id) || other.id == id)&&(identical(other.index, index) || other.index == index)&&(identical(other.type, type) || other.type == type));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ToolCall&&(identical(other.functionCall, functionCall) || other.functionCall == functionCall)&&(identical(other.id, id) || other.id == id)&&(identical(other.index, index) || other.index == index)&&(identical(other.type, type) || other.type == type));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_toolCalls),id,index,type);
+int get hashCode => Object.hash(runtimeType,functionCall,id,index,type);
 
 @override
 String toString() {
-  return 'ToolCall(toolCalls: $toolCalls, id: $id, index: $index, type: $type)';
+  return 'ToolCall(functionCall: $functionCall, id: $id, index: $index, type: $type)';
 }
 
 
@@ -261,11 +262,11 @@ abstract mixin class _$ToolCallCopyWith<$Res> implements $ToolCallCopyWith<$Res>
   factory _$ToolCallCopyWith(_ToolCall value, $Res Function(_ToolCall) _then) = __$ToolCallCopyWithImpl;
 @override @useResult
 $Res call({
- List<ToolCall>? toolCalls, String id, int index, Type type
+@JsonKey(name: "function_call")@FunctionCallConverter() FunctionCall functionCall, String id, int index, Type type
 });
 
 
-
+@override $FunctionCallCopyWith<$Res> get functionCall;
 
 }
 /// @nodoc
@@ -278,17 +279,26 @@ class __$ToolCallCopyWithImpl<$Res>
 
 /// Create a copy of ToolCall
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? toolCalls = freezed,Object? id = null,Object? index = null,Object? type = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? functionCall = null,Object? id = null,Object? index = null,Object? type = null,}) {
   return _then(_ToolCall(
-toolCalls: freezed == toolCalls ? _self._toolCalls : toolCalls // ignore: cast_nullable_to_non_nullable
-as List<ToolCall>?,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+functionCall: null == functionCall ? _self.functionCall : functionCall // ignore: cast_nullable_to_non_nullable
+as FunctionCall,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,index: null == index ? _self.index : index // ignore: cast_nullable_to_non_nullable
 as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as Type,
   ));
 }
 
-
+/// Create a copy of ToolCall
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FunctionCallCopyWith<$Res> get functionCall {
+  
+  return $FunctionCallCopyWith<$Res>(_self.functionCall, (value) {
+    return _then(_self.copyWith(functionCall: value));
+  });
+}
 }
 
 // dart format on

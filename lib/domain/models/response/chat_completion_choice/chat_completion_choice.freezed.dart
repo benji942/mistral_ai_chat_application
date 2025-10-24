@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ChatCompletionChoice {
 
- FinishReason get finishReason; int get index; AssistantMessage get message;
+@JsonKey(name: "finish_reason") FinishReason get finishReason; int get index; AssistantMessage get message;
 /// Create a copy of ChatCompletionChoice
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ChatCompletionChoiceCopyWith<$Res>  {
   factory $ChatCompletionChoiceCopyWith(ChatCompletionChoice value, $Res Function(ChatCompletionChoice) _then) = _$ChatCompletionChoiceCopyWithImpl;
 @useResult
 $Res call({
- FinishReason finishReason, int index, AssistantMessage message
+@JsonKey(name: "finish_reason") FinishReason finishReason, int index, AssistantMessage message
 });
 
 
@@ -164,7 +164,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FinishReason finishReason,  int index,  AssistantMessage message)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "finish_reason")  FinishReason finishReason,  int index,  AssistantMessage message)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChatCompletionChoice() when $default != null:
 return $default(_that.finishReason,_that.index,_that.message);case _:
@@ -185,7 +185,7 @@ return $default(_that.finishReason,_that.index,_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FinishReason finishReason,  int index,  AssistantMessage message)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "finish_reason")  FinishReason finishReason,  int index,  AssistantMessage message)  $default,) {final _that = this;
 switch (_that) {
 case _ChatCompletionChoice():
 return $default(_that.finishReason,_that.index,_that.message);case _:
@@ -205,7 +205,7 @@ return $default(_that.finishReason,_that.index,_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FinishReason finishReason,  int index,  AssistantMessage message)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "finish_reason")  FinishReason finishReason,  int index,  AssistantMessage message)?  $default,) {final _that = this;
 switch (_that) {
 case _ChatCompletionChoice() when $default != null:
 return $default(_that.finishReason,_that.index,_that.message);case _:
@@ -220,10 +220,10 @@ return $default(_that.finishReason,_that.index,_that.message);case _:
 @JsonSerializable()
 
 class _ChatCompletionChoice implements ChatCompletionChoice {
-  const _ChatCompletionChoice({required this.finishReason, required this.index, required this.message});
+  const _ChatCompletionChoice({@JsonKey(name: "finish_reason") required this.finishReason, required this.index, required this.message});
   factory _ChatCompletionChoice.fromJson(Map<String, dynamic> json) => _$ChatCompletionChoiceFromJson(json);
 
-@override final  FinishReason finishReason;
+@override@JsonKey(name: "finish_reason") final  FinishReason finishReason;
 @override final  int index;
 @override final  AssistantMessage message;
 
@@ -260,7 +260,7 @@ abstract mixin class _$ChatCompletionChoiceCopyWith<$Res> implements $ChatComple
   factory _$ChatCompletionChoiceCopyWith(_ChatCompletionChoice value, $Res Function(_ChatCompletionChoice) _then) = __$ChatCompletionChoiceCopyWithImpl;
 @override @useResult
 $Res call({
- FinishReason finishReason, int index, AssistantMessage message
+@JsonKey(name: "finish_reason") FinishReason finishReason, int index, AssistantMessage message
 });
 
 

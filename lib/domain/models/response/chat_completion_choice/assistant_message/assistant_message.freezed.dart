@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AssistantMessage {
 
- String? get content; bool get prefix; Role get role; List<ToolCall>? get toolCalls;
+ String? get content; bool get prefix; Role get role;@JsonKey(name: "tool_calls") List<ToolCall>? get toolCalls;
 /// Create a copy of AssistantMessage
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $AssistantMessageCopyWith<$Res>  {
   factory $AssistantMessageCopyWith(AssistantMessage value, $Res Function(AssistantMessage) _then) = _$AssistantMessageCopyWithImpl;
 @useResult
 $Res call({
- String? content, bool prefix, Role role, List<ToolCall>? toolCalls
+ String? content, bool prefix, Role role,@JsonKey(name: "tool_calls") List<ToolCall>? toolCalls
 });
 
 
@@ -156,7 +156,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? content,  bool prefix,  Role role,  List<ToolCall>? toolCalls)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? content,  bool prefix,  Role role, @JsonKey(name: "tool_calls")  List<ToolCall>? toolCalls)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AssistantMessage() when $default != null:
 return $default(_that.content,_that.prefix,_that.role,_that.toolCalls);case _:
@@ -177,7 +177,7 @@ return $default(_that.content,_that.prefix,_that.role,_that.toolCalls);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? content,  bool prefix,  Role role,  List<ToolCall>? toolCalls)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? content,  bool prefix,  Role role, @JsonKey(name: "tool_calls")  List<ToolCall>? toolCalls)  $default,) {final _that = this;
 switch (_that) {
 case _AssistantMessage():
 return $default(_that.content,_that.prefix,_that.role,_that.toolCalls);case _:
@@ -197,7 +197,7 @@ return $default(_that.content,_that.prefix,_that.role,_that.toolCalls);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? content,  bool prefix,  Role role,  List<ToolCall>? toolCalls)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? content,  bool prefix,  Role role, @JsonKey(name: "tool_calls")  List<ToolCall>? toolCalls)?  $default,) {final _that = this;
 switch (_that) {
 case _AssistantMessage() when $default != null:
 return $default(_that.content,_that.prefix,_that.role,_that.toolCalls);case _:
@@ -212,14 +212,14 @@ return $default(_that.content,_that.prefix,_that.role,_that.toolCalls);case _:
 @JsonSerializable()
 
 class _AssistantMessage implements AssistantMessage {
-  const _AssistantMessage({this.content, this.prefix = false, this.role = Role.assistant, final  List<ToolCall>? toolCalls}): _toolCalls = toolCalls;
+  const _AssistantMessage({this.content, this.prefix = false, this.role = Role.assistant, @JsonKey(name: "tool_calls") final  List<ToolCall>? toolCalls}): _toolCalls = toolCalls;
   factory _AssistantMessage.fromJson(Map<String, dynamic> json) => _$AssistantMessageFromJson(json);
 
 @override final  String? content;
 @override@JsonKey() final  bool prefix;
 @override@JsonKey() final  Role role;
  final  List<ToolCall>? _toolCalls;
-@override List<ToolCall>? get toolCalls {
+@override@JsonKey(name: "tool_calls") List<ToolCall>? get toolCalls {
   final value = _toolCalls;
   if (value == null) return null;
   if (_toolCalls is EqualUnmodifiableListView) return _toolCalls;
@@ -261,7 +261,7 @@ abstract mixin class _$AssistantMessageCopyWith<$Res> implements $AssistantMessa
   factory _$AssistantMessageCopyWith(_AssistantMessage value, $Res Function(_AssistantMessage) _then) = __$AssistantMessageCopyWithImpl;
 @override @useResult
 $Res call({
- String? content, bool prefix, Role role, List<ToolCall>? toolCalls
+ String? content, bool prefix, Role role,@JsonKey(name: "tool_calls") List<ToolCall>? toolCalls
 });
 
 

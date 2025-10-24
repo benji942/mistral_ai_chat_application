@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:mistral_ai_chat_application/domain/models/request_body/request_body.dart';
+import 'package:mistral_ai_chat_application/domain/models/response/response.dart';
 import 'package:mistral_ai_chat_application/utils/result.dart';
 
 class ApiClient {
@@ -9,7 +11,7 @@ class ApiClient {
 
   static const API_KEY = "";
 
-  Future<Result<http.Response>> postChatCompletion() async {
+  Future<Result<Response>> postChatCompletion(RequestBody body) async {
     try {
       final response = await http.post(
         Uri.parse('https://api.mistral.ai/v1/chat/completions'),
@@ -17,20 +19,20 @@ class ApiClient {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $API_KEY',
         },
-        body: jsonEncode(<String, dynamic>{
-          "max_tokens": 200,
-          "messages": [
-            {"content": "Quel est la météo aujourd'hui à paris?", "role": "user"},
-          ],
-          "model": "mistral-large-latest",
-        }),
+        body: jsonEncode(body.toJson()),
       );
+      debugPrint(jsonEncode(body.toJson()));
       debugPrint(response.body);
-      return Result.ok(response);
+      if (response.statusCode != 200) {
+        return Result.error(
+          Exception('postChatCompletion failed : ${response.statusCode}'),
+        );
+      }
+      return Result.ok(
+        Response.fromJson(jsonDecode(response.body) as Map<String, dynamic>),
+      );
     } catch (error) {
-      debugPrint(error.toString());
-      return Result.error(Exception(''));
+      return Result.error(Exception('postChatCompletion failed : $error'));
     }
   }
 }
-
